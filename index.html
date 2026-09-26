@@ -5,227 +5,1206 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ContentFlow CMS</title>
 <link rel="stylesheet" href="style.css">
+
+<style>
+/* APPROVAL BUTTON FIX */
+.approve-btn {
+    background: #2563eb !important;
+    color: white !important;
+    border: 1px solid #2563eb !important;
+    padding: 8px 14px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+}
+
+.approve-btn:hover {
+    background: #1d4ed8 !important;
+}
+
+.reject-btn {
+    background: white !important;
+    color: #dc2626 !important;
+    border: 1px solid #fca5a5 !important;
+    padding: 8px 14px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+}
+
+.reject-btn:hover {
+    background: #fef2f2 !important;
+}
+
+.approval-success {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+</style>
+
 </head>
+
 <body>
 
 <!-- LOGIN / REGISTER -->
 <div id="authScreen" class="auth-screen">
+
     <div class="auth-card">
+
         <div class="brand">Content<span>Flow</span></div>
-        <p class="tagline">Simple Content Management System</p>
+
+        <p class="tagline">
+            Simple Content Management System
+        </p>
 
         <div class="auth-tabs">
-            <button id="loginTab" class="tab active" onclick="showAuth('login')">Login</button>
-            <button id="signupTab" class="tab" onclick="showAuth('signup')">Sign Up</button>
+
+            <button
+                id="loginTab"
+                class="tab active"
+                onclick="showAuth('login')">
+                Login
+            </button>
+
+            <button
+                id="signupTab"
+                class="tab"
+                onclick="showAuth('signup')">
+                Sign Up
+            </button>
+
         </div>
+
 
         <form id="loginForm" onsubmit="login(event)">
+
             <label>Username</label>
-            <input id="loginUsername" type="text" placeholder="Enter username" required>
+
+            <input
+                id="loginUsername"
+                type="text"
+                placeholder="Enter username"
+                required>
+
             <label>Password</label>
-            <input id="loginPassword" type="password" placeholder="Enter password" required>
-            <button class="primary full" type="submit">Login</button>
-            <p id="loginError" class="error"></p>
+
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Enter password"
+                required>
+
+            <button
+                class="primary full"
+                type="submit">
+                Login
+            </button>
+
+            <p
+                id="loginError"
+                class="error">
+            </p>
+
         </form>
 
-        <form id="signupForm" class="hidden" onsubmit="signup(event)">
+
+        <form
+            id="signupForm"
+            class="hidden"
+            onsubmit="signup(event)">
+
             <label>Full Name</label>
-            <input id="signupName" type="text" placeholder="Enter your name" required>
+
+            <input
+                id="signupName"
+                type="text"
+                placeholder="Enter your name"
+                required>
+
             <label>Username</label>
-            <input id="signupUsername" type="text" placeholder="Choose a username" required>
+
+            <input
+                id="signupUsername"
+                type="text"
+                placeholder="Choose a username"
+                required>
+
             <label>Email</label>
-            <input id="signupEmail" type="email" placeholder="Enter email" required>
+
+            <input
+                id="signupEmail"
+                type="email"
+                placeholder="Enter email"
+                required>
+
             <label>Password</label>
-            <input id="signupPassword" type="password" placeholder="Create password" required>
-            <button class="primary full" type="submit">Create Account</button>
-            <p id="signupError" class="error"></p>
+
+            <input
+                id="signupPassword"
+                type="password"
+                placeholder="Create password"
+                required>
+
+            <button
+                class="primary full"
+                type="submit">
+                Create Account
+            </button>
+
+            <p
+                id="signupError"
+                class="error">
+            </p>
+
         </form>
 
-        <div class="demo-box">
-            <b>Demo Admin</b><br>
-            Username: <b>admin</b> &nbsp; Password: <b>admin123</b>
-        </div>
     </div>
+
 </div>
+
 
 <!-- APPLICATION -->
 <div id="app" class="hidden">
 
 <header class="topbar">
-    <div class="brand">Content<span>Flow</span></div>
-    <div class="top-actions">
-        <span id="welcomeUser"></span>
-        <button class="logout" onclick="logout()">Logout</button>
+
+    <div class="brand">
+        Content<span>Flow</span>
     </div>
+
+    <div class="top-actions">
+
+        <span id="welcomeUser"></span>
+
+        <button
+            class="logout"
+            onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
 </header>
 
+
 <div class="layout">
+
+    <!-- SIDEBAR -->
+
     <aside class="sidebar">
-        <button onclick="openSection('dashboard')">🏠 Dashboard</button>
-        <button onclick="openSection('content')">📄 Content</button>
-        <button onclick="openSection('templates')">🎨 Templates</button>
-        <button onclick="openSection('search')">🔎 Search</button>
-        <button id="adminUsersBtn" onclick="openSection('users')">👥 Users</button>
-        <button id="adminApprovalBtn" onclick="openSection('approval')">✅ Approval</button>
-        <button onclick="openSection('analytics')">📊 Analytics</button>
-        <button onclick="openSection('profile')">👤 Profile</button>
+
+        <button onclick="openSection('dashboard')">
+            🏠 Dashboard
+        </button>
+
+        <button onclick="openSection('content')">
+            📄 Content
+        </button>
+
+        <button onclick="openSection('templates')">
+            🎨 Templates
+        </button>
+
+        <button onclick="openSection('search')">
+            🔎 Search
+        </button>
+
+        <button
+            id="adminUsersBtn"
+            onclick="openSection('users')">
+            👥 Users
+        </button>
+
+        <button
+            id="adminApprovalBtn"
+            onclick="openSection('approval')">
+            ✅ Approval
+        </button>
+
+        <button onclick="openSection('analytics')">
+            📊 Analytics
+        </button>
+
+        <button onclick="openSection('profile')">
+            👤 Profile
+        </button>
+
     </aside>
+
 
     <main class="main">
 
+
         <!-- DASHBOARD -->
-        <section id="dashboard" class="page-section">
+
+        <section
+            id="dashboard"
+            class="page-section">
+
             <div class="page-heading">
+
                 <div>
-                    <h1>Dashboard</h1>
-                    <p>Welcome to your Content Management System.</p>
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Welcome to your Content Management System.
+                    </p>
+
                 </div>
-                <button class="primary" onclick="openCreateContent()">+ New Content</button>
+
+                <button
+                    class="primary"
+                    onclick="openCreateContent()">
+                    + New Content
+                </button>
+
             </div>
 
+
             <div class="stats">
-                <div class="stat-card"><div class="stat-icon">📄</div><h2 id="statTotal">0</h2><p>Total Content</p></div>
-                <div class="stat-card"><div class="stat-icon">🌐</div><h2 id="statPublished">0</h2><p>Published</p></div>
-                <div class="stat-card"><div class="stat-icon">⏳</div><h2 id="statPending">0</h2><p>Pending Approval</p></div>
-                <div class="stat-card"><div class="stat-icon">👥</div><h2 id="statUsers">0</h2><p>Users</p></div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📄
+                    </div>
+
+                    <h2 id="statTotal">
+                        0
+                    </h2>
+
+                    <p>
+                        Total Content
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🌐
+                    </div>
+
+                    <h2 id="statPublished">
+                        0
+                    </h2>
+
+                    <p>
+                        Published
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ⏳
+                    </div>
+
+                    <h2 id="statPending">
+                        0
+                    </h2>
+
+                    <p>
+                        Pending Approval
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                    <h2 id="statUsers">
+                        0
+                    </h2>
+
+                    <p>
+                        Users
+                    </p>
+
+                </div>
+
             </div>
+
 
             <div class="grid-2">
+
                 <div class="panel">
-                    <div class="panel-title"><h3>Recent Content</h3><button class="link-btn" onclick="openSection('content')">View All</button></div>
-                    <div id="recentContent"></div>
-                </div>
-                <div class="panel">
-                    <h3>Quick Actions</h3>
-                    <div class="quick-actions">
-                        <button onclick="openCreateContent()">📝 Create Content</button>
-                        <button onclick="openSection('search')">🔎 Search Content</button>
-                        <button onclick="openSection('templates')">🎨 Choose Template</button>
-                        <button id="quickApproval" onclick="openSection('approval')">✅ Review Submissions</button>
+
+                    <div class="panel-title">
+
+                        <h3>
+                            Recent Content
+                        </h3>
+
+                        <button
+                            class="link-btn"
+                            onclick="openSection('content')">
+                            View All
+                        </button>
+
                     </div>
+
+                    <div id="recentContent"></div>
+
                 </div>
+
+
+                <div class="panel">
+
+                    <h3>
+                        Quick Actions
+                    </h3>
+
+                    <div class="quick-actions">
+
+                        <button
+                            onclick="openCreateContent()">
+                            📝 Create Content
+                        </button>
+
+                        <button
+                            onclick="openSection('search')">
+                            🔎 Search Content
+                        </button>
+
+                        <button
+                            onclick="openSection('templates')">
+                            🎨 Choose Template
+                        </button>
+
+                        <button
+                            id="quickApproval"
+                            onclick="openSection('approval')">
+                            ✅ Review Submissions
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </section>
+
 
         <!-- CONTENT -->
-        <section id="content" class="page-section hidden">
+
+        <section
+            id="content"
+            class="page-section hidden">
+
             <div class="page-heading">
-                <div><h1>Content Management</h1><p>Create, edit, publish and manage content.</p></div>
-                <button class="primary" onclick="openCreateContent()">+ Create Content</button>
+
+                <div>
+
+                    <h1>
+                        Content Management
+                    </h1>
+
+                    <p>
+                        Create, edit, publish and manage content.
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary"
+                    onclick="openCreateContent()">
+                    + Create Content
+                </button>
+
             </div>
+
+
             <div class="filter-row">
-                <select id="contentFilter" onchange="renderContent()">
-                    <option value="all">All Content</option>
-                    <option value="published">Published</option>
-                    <option value="draft">Draft</option>
-                    <option value="pending">Pending</option>
-                    <option value="rejected">Rejected</option>
+
+                <select
+                    id="contentFilter"
+                    onchange="renderContent()">
+
+                    <option value="all">
+                        All Content
+                    </option>
+
+                    <option value="published">
+                        Published
+                    </option>
+
+                    <option value="draft">
+                        Draft
+                    </option>
+
+                    <option value="pending">
+                        Pending
+                    </option>
+
+                    <option value="rejected">
+                        Rejected
+                    </option>
+
                 </select>
-                <input id="contentSearch" oninput="renderContent()" placeholder="Search your content...">
+
+
+                <input
+                    id="contentSearch"
+                    oninput="renderContent()"
+                    placeholder="Search your content...">
+
             </div>
+
+
             <div id="contentList"></div>
+
         </section>
+
 
         <!-- CREATE / EDIT -->
-        <section id="editor" class="page-section hidden">
+
+        <section
+            id="editor"
+            class="page-section hidden">
+
             <div class="page-heading">
-                <div><h1 id="editorTitle">Create Content</h1><p>Write and submit your website content.</p></div>
-                <button class="secondary" onclick="openSection('content')">← Back</button>
-            </div>
-            <div class="editor-card">
-                <label>Content Title</label>
-                <input id="editTitle" placeholder="Enter a title">
-                <label>Category</label>
-                <select id="editCategory">
-                    <option>Technology</option>
-                    <option>Education</option>
-                    <option>Business</option>
-                    <option>News</option>
-                    <option>General</option>
-                </select>
-                <label>Content</label>
-                <textarea id="editBody" class="large-text" placeholder="Write your content here..."></textarea>
-                <label>Template</label>
-                <select id="editTemplate">
-                    <option>Classic Article</option>
-                    <option>Modern Blog</option>
-                    <option>News Layout</option>
-                    <option>Simple Page</option>
-                </select>
-                <div class="editor-buttons">
-                    <button class="secondary" onclick="saveContent('draft')">Save Draft</button>
-                    <button class="primary" onclick="saveContent('submit')">Submit for Approval</button>
+
+                <div>
+
+                    <h1 id="editorTitle">
+                        Create Content
+                    </h1>
+
+                    <p>
+                        Write and submit your website content.
+                    </p>
+
                 </div>
-                <p id="editorMessage" class="success"></p>
+
+                <button
+                    class="secondary"
+                    onclick="openSection('content')">
+                    ← Back
+                </button>
+
             </div>
+
+
+            <div class="editor-card">
+
+                <label>
+                    Content Title
+                </label>
+
+                <input
+                    id="editTitle"
+                    placeholder="Enter a title">
+
+
+                <label>
+                    Category
+                </label>
+
+                <select id="editCategory">
+
+                    <option>
+                        Technology
+                    </option>
+
+                    <option>
+                        Education
+                    </option>
+
+                    <option>
+                        Business
+                    </option>
+
+                    <option>
+                        News
+                    </option>
+
+                    <option>
+                        General
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Content
+                </label>
+
+                <textarea
+                    id="editBody"
+                    class="large-text"
+                    placeholder="Write your content here...">
+                </textarea>
+
+
+                <label>
+                    Template
+                </label>
+
+                <select id="editTemplate">
+
+                    <option>
+                        Classic Article
+                    </option>
+
+                    <option>
+                        Modern Blog
+                    </option>
+
+                    <option>
+                        News Layout
+                    </option>
+
+                    <option>
+                        Simple Page
+                    </option>
+
+                </select>
+
+
+                <div class="editor-buttons">
+
+                    <button
+                        class="secondary"
+                        onclick="saveContent('draft')">
+                        Save Draft
+                    </button>
+
+                    <button
+                        class="primary"
+                        onclick="saveContent('submit')">
+                        Submit for Approval
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="editorMessage"
+                    class="success">
+                </p>
+
+            </div>
+
         </section>
+
 
         <!-- TEMPLATES -->
-        <section id="templates" class="page-section hidden">
+
+        <section
+            id="templates"
+            class="page-section hidden">
+
             <div class="page-heading">
-                <div><h1>Templates</h1><p>Choose a layout for your content.</p></div>
+
+                <div>
+
+                    <h1>
+                        Templates
+                    </h1>
+
+                    <p>
+                        Choose a layout for your content.
+                    </p>
+
+                </div>
+
             </div>
+
+
             <div class="template-grid">
-                <div class="template-card"><div class="template-preview classic">ARTICLE</div><h3>Classic Article</h3><p>Clean layout for articles and documentation.</p><button onclick="useTemplate('Classic Article')">Use Template</button></div>
-                <div class="template-card"><div class="template-preview modern">BLOG</div><h3>Modern Blog</h3><p>Modern layout for blog posts and stories.</p><button onclick="useTemplate('Modern Blog')">Use Template</button></div>
-                <div class="template-card"><div class="template-preview news">NEWS</div><h3>News Layout</h3><p>Structured layout for news and announcements.</p><button onclick="useTemplate('News Layout')">Use Template</button></div>
-                <div class="template-card"><div class="template-preview simple">PAGE</div><h3>Simple Page</h3><p>Minimal layout for basic website pages.</p><button onclick="useTemplate('Simple Page')">Use Template</button></div>
+
+                <div class="template-card">
+
+                    <div class="template-preview classic">
+                        ARTICLE
+                    </div>
+
+                    <h3>
+                        Classic Article
+                    </h3>
+
+                    <p>
+                        Clean layout for articles and documentation.
+                    </p>
+
+                    <button
+                        onclick="useTemplate('Classic Article')">
+                        Use Template
+                    </button>
+
+                </div>
+
+
+                <div class="template-card">
+
+                    <div class="template-preview modern">
+                        BLOG
+                    </div>
+
+                    <h3>
+                        Modern Blog
+                    </h3>
+
+                    <p>
+                        Modern layout for blog posts and stories.
+                    </p>
+
+                    <button
+                        onclick="useTemplate('Modern Blog')">
+                        Use Template
+                    </button>
+
+                </div>
+
+
+                <div class="template-card">
+
+                    <div class="template-preview news">
+                        NEWS
+                    </div>
+
+                    <h3>
+                        News Layout
+                    </h3>
+
+                    <p>
+                        Structured layout for news and announcements.
+                    </p>
+
+                    <button
+                        onclick="useTemplate('News Layout')">
+                        Use Template
+                    </button>
+
+                </div>
+
+
+                <div class="template-card">
+
+                    <div class="template-preview simple">
+                        PAGE
+                    </div>
+
+                    <h3>
+                        Simple Page
+                    </h3>
+
+                    <p>
+                        Minimal layout for basic website pages.
+                    </p>
+
+                    <button
+                        onclick="useTemplate('Simple Page')">
+                        Use Template
+                    </button>
+
+                </div>
+
             </div>
+
         </section>
+
 
         <!-- SEARCH -->
-        <section id="search" class="page-section hidden">
+
+        <section
+            id="search"
+            class="page-section hidden">
+
             <div class="page-heading">
-                <div><h1>Search Content</h1><p>Find published content quickly.</p></div>
+
+                <div>
+
+                    <h1>
+                        Search Content
+                    </h1>
+
+                    <p>
+                        Find published content quickly.
+                    </p>
+
+                </div>
+
             </div>
-            <input class="big-search" id="globalSearch" oninput="renderSearch()" placeholder="Search by title, category or content...">
+
+
+            <input
+                class="big-search"
+                id="globalSearch"
+                oninput="renderSearch()"
+                placeholder="Search by title, category or content...">
+
+
             <div id="searchResults"></div>
+
         </section>
+
 
         <!-- USERS -->
-        <section id="users" class="page-section hidden">
-            <div class="page-heading"><div><h1>User Management</h1><p>Manage registered users.</p></div></div>
-            <div class="table-wrap">
-                <table>
-                    <thead><tr><th>Name</th><th>Username</th><th>Email</th><th>Role</th><th>Status</th></tr></thead>
-                    <tbody id="userTable"></tbody>
-                </table>
+
+        <section
+            id="users"
+            class="page-section hidden">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h1>
+                        User Management
+                    </h1>
+
+                    <p>
+                        Manage registered users.
+                    </p>
+
+                </div>
+
             </div>
+
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Username
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Role
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="userTable"></tbody>
+
+                </table>
+
+            </div>
+
         </section>
+
 
         <!-- APPROVAL -->
-        <section id="approval" class="page-section hidden">
-            <div class="page-heading"><div><h1>Approval Workflow</h1><p>Review content submitted by users.</p></div></div>
+
+        <section
+            id="approval"
+            class="page-section hidden">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h1>
+                        Approval Workflow
+                    </h1>
+
+                    <p>
+                        Review content submitted by users.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUCCESS MESSAGE -->
+
+            <div id="approvalMessage"></div>
+
+
+            <!-- APPROVAL ITEMS -->
+
             <div id="approvalList"></div>
+
         </section>
+
 
         <!-- ANALYTICS -->
-        <section id="analytics" class="page-section hidden">
-            <div class="page-heading"><div><h1>Analytics</h1><p>Basic content management statistics.</p></div></div>
+
+        <section
+            id="analytics"
+            class="page-section hidden">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h1>
+                        Analytics
+                    </h1>
+
+                    <p>
+                        Basic content management statistics.
+                    </p>
+
+                </div>
+
+            </div>
+
+
             <div class="stats">
-                <div class="stat-card"><div class="stat-icon">👁️</div><h2 id="analyticsViews">0</h2><p>Content Views</p></div>
-                <div class="stat-card"><div class="stat-icon">📝</div><h2 id="analyticsCreated">0</h2><p>Created</p></div>
-                <div class="stat-card"><div class="stat-icon">🚀</div><h2 id="analyticsPublished">0</h2><p>Published</p></div>
-                <div class="stat-card"><div class="stat-icon">❌</div><h2 id="analyticsRejected">0</h2><p>Rejected</p></div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👁️
+                    </div>
+
+                    <h2 id="analyticsViews">
+                        0
+                    </h2>
+
+                    <p>
+                        Content Views
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📝
+                    </div>
+
+                    <h2 id="analyticsCreated">
+                        0
+                    </h2>
+
+                    <p>
+                        Created
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🚀
+                    </div>
+
+                    <h2 id="analyticsPublished">
+                        0
+                    </h2>
+
+                    <p>
+                        Published
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ❌
+                    </div>
+
+                    <h2 id="analyticsRejected">
+                        0
+                    </h2>
+
+                    <p>
+                        Rejected
+                    </p>
+
+                </div>
+
             </div>
+
+
             <div class="panel">
-                <h3>Content Status Overview</h3>
+
+                <h3>
+                    Content Status Overview
+                </h3>
+
                 <div id="analyticsBars"></div>
+
             </div>
+
         </section>
 
+
         <!-- PROFILE -->
-        <section id="profile" class="page-section hidden">
-            <div class="page-heading"><div><h1>My Profile</h1><p>Your account information.</p></div></div>
-            <div class="profile-card" id="profileCard"></div>
+
+        <section
+            id="profile"
+            class="page-section hidden">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h1>
+                        My Profile
+                    </h1>
+
+                    <p>
+                        Your account information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="profile-card"
+                id="profileCard">
+            </div>
+
         </section>
 
     </main>
+
 </div>
 
-<footer>ContentFlow CMS • Frontend Project • HTML + CSS + JavaScript + Local Storage</footer>
+
+<footer>
+    ContentFlow CMS • Frontend Project • HTML + CSS + JavaScript + Local Storage
+</footer>
+
 </div>
+
 
 <script src="script.js"></script>
+
+
+<!-- =====================================================
+     APPROVAL WORKFLOW FIX
+===================================================== -->
+
+<script>
+
+/*
+    This function handles:
+
+    Approve & Publish
+    Reject
+
+    It changes the content status in Local Storage
+    and displays a success message.
+*/
+
+function approveContent(id, status) {
+
+    const user = current();
+
+    // Only Admin can approve/reject
+    if (!user || user.role !== "Admin") {
+
+        alert("Only Admin can approve submissions.");
+
+        return;
+    }
+
+
+    // Get all content
+    const content = getContent();
+
+
+    // Find selected content
+    const item = content.find(function(c) {
+
+        return c.id === id;
+
+    });
+
+
+    // If content doesn't exist
+    if (!item) {
+
+        alert("Content not found.");
+
+        return;
+    }
+
+
+    // Change status
+    item.status = status;
+
+
+    // Save updated content
+    saveData("cms_content", content);
+
+
+    // Get success message container
+    const message =
+        document.getElementById("approvalMessage");
+
+
+    // Display message
+    if (status === "Published") {
+
+        message.innerHTML = `
+            <div class="approval-success">
+                ✓ Content approved and published successfully.
+            </div>
+        `;
+
+    } else {
+
+        message.innerHTML = `
+            <div class="approval-success">
+                ✓ Content rejected successfully.
+            </div>
+        `;
+
+    }
+
+
+    // Refresh dashboard/content/statistics
+    refreshAll();
+
+
+    // Stay on Approval page
+    document
+        .querySelectorAll(".page-section")
+        .forEach(function(section) {
+
+            section.classList.add("hidden");
+
+        });
+
+
+    document
+        .getElementById("approval")
+        .classList.remove("hidden");
+
+
+    // Fix button colors after refresh
+    setTimeout(function() {
+
+        fixApprovalButtons();
+
+    }, 100);
+
+}
+
+
+/*
+    Makes the approval buttons visible.
+*/
+
+function fixApprovalButtons() {
+
+    const approvalList =
+        document.getElementById("approvalList");
+
+
+    if (!approvalList) {
+
+        return;
+
+    }
+
+
+    const buttons =
+        approvalList.querySelectorAll("button");
+
+
+    buttons.forEach(function(button) {
+
+        const label =
+            button.textContent.trim();
+
+
+        if (label === "Approve & Publish") {
+
+            button.classList.remove("primary");
+
+            button.classList.add("approve-btn");
+
+        }
+
+
+        if (label === "Reject") {
+
+            button.classList.add("reject-btn");
+
+        }
+
+    });
+
+}
+
+
+/*
+    Watches for buttons created dynamically
+    by script.js.
+*/
+
+const approvalObserver =
+    new MutationObserver(function() {
+
+        fixApprovalButtons();
+
+    });
+
+
+window.addEventListener("load", function() {
+
+    const approvalList =
+        document.getElementById("approvalList");
+
+
+    if (approvalList) {
+
+        approvalObserver.observe(
+            approvalList,
+            {
+                childList: true,
+                subtree: true
+            }
+        );
+
+    }
+
+
+    fixApprovalButtons();
+
+});
+
+</script>
+
 </body>
 </html>
